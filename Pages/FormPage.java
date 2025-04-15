@@ -1,6 +1,9 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebElement;
 
@@ -13,10 +16,12 @@ public class FormPage extends BasePage{
     }
 
 
+
     @FindBy(xpath = "//h5")
     public WebElement registrForm;
 
-    @FindBy(xpath = "//*[text()='Forms']")
+//    @FindBy(xpath = "//*[@baseProfile='tiny']")
+    @FindBy(xpath = "//img[@class='banner-image']")
     public WebElement formSButton;
 
     @FindBy(xpath = "//div[@class='element-list collapse show']")
@@ -68,15 +73,15 @@ public class FormPage extends BasePage{
     public WebElement submitButton;
 
 
-    public void openFormsButton() throws InterruptedException {
+    public void openFormsButton(){
         click(formSButton);
     }
 
-    public void openFormButton() throws InterruptedException {
+    public void openFormButton(){
         click(formButton);
     }
 
-    public void checkBox() throws InterruptedException {
+    public void chooseCheckBox(){
         click(sportBox);
         click(musicBox);
         click(readingBox);
@@ -88,7 +93,7 @@ public class FormPage extends BasePage{
         emailField.sendKeys(email);
         maleButton.click();
         numField.sendKeys(number);
-        checkBox();
+        chooseCheckBox();
         adressField.sendKeys(adress);
     }
 

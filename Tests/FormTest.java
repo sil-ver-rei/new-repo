@@ -9,7 +9,7 @@ public class FormTest extends BaseTest{
 
 
     @Test
-    public void checkComplitForm() throws InterruptedException {
+    public void checkCompleteForm() throws InterruptedException {
 
         FormPage formPage = new FormPage(driver);
 
