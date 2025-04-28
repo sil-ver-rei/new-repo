@@ -1,4 +1,4 @@
-package Tests;
+package UI.Tests;
 
 public class TablesTest {
 }

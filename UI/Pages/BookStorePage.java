@@ -1,15 +1,22 @@
-package Pages;
+package UI.Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BookStorePage extends BasePage {
 
-    //HOME
-    @FindBy(xpath = "//h5[text()='Book Store Application']")
-    public WebElement storeButton;
+    public BookStorePage(WebDriver driver){
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+//ELEMENTS
+
+    @FindBy(xpath = "//div[contains(@class,'left-pannel')]")
+    private WebElement sideBarMenu;
 
     //LOGIN
     @FindBy(xpath = "//span[text()='Login']")
@@ -23,9 +30,9 @@ public class BookStorePage extends BasePage {
     @FindBy(xpath = "//input[@id='password']")
     public WebElement passField;
     @FindBy(xpath = "//input[@id='firstname']")
-    public WebElement firstName;
+    public WebElement firstNameField;
     @FindBy(xpath = "//input[@id='lastname']")
-    public WebElement lastName;
+    public WebElement lastNameField;
     @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
     public WebElement reCaptcha;
     @FindBy(xpath = "//button[@id='register']")
@@ -34,6 +41,9 @@ public class BookStorePage extends BasePage {
     public WebElement wrongRegister;
     @FindBy(xpath = "//p[text()='Invalid username or password!']")
     public WebElement wrongLogin;
+    @FindBy(xpath = "//p[@class='mb-1']")
+    public WebElement resultMassage;
+
 
 
     //BOOK STORE
@@ -48,9 +58,44 @@ public class BookStorePage extends BasePage {
     @FindBy(xpath = "//span[text()='Book Store API']")
     public WebElement entryAPI;
 
-    public BookStorePage(WebDriver driver){
-        super(driver);
-        PageFactory.initElements(driver, this);
+//METHOD
+
+    //LOGIN
+    public boolean isBookStorePageDisplayed(){
+        return isDisplayed(sideBarMenu);
+    }
+
+    public void openLoginForm(){
+        scrollAndClick(entryLogin);
+    }
+
+    public void enterUserName(String username){
+        userField.sendKeys(username);
+    }
+
+    public void enterPassword(String password){
+        passField.sendKeys(password);
+    }
+
+    public void clickLoginButton(){
+        click(loginButton);
+    }
+
+    public boolean isResultMassageCorrect(String resultMassageText){
+        wait.until(ExpectedConditions.visibilityOf(resultMassage));
+        return resultMassage.getText().contains(resultMassageText);
+    }
+
+    public void openRegisterForm(){
+        click(newUserButton);
+    }
+
+    public void entryFirstName(String firstname){
+        firstNameField.sendKeys(firstname);
+    }
+
+    public void entryLastName(String lastname){
+        lastNameField.sendKeys(lastname);
     }
 
 }
