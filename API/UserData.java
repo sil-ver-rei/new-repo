@@ -15,6 +15,8 @@ public class UserData {
         this.avatar = avatar;
     }
 
+    public UserData(){}
+
     public Integer getId() {
         return id;
     }
